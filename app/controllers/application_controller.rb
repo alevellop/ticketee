@@ -4,4 +4,4 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 end
 
-#---contiunar por página 59 de Rails 4 in Action
+#---continuar por página 59 de Rails 4 in Action
