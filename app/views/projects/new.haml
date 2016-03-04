@@ -1,0 +1,12 @@
+%h2 New Project
+
+= form_for(@project) do |f|
+  %p
+    = f.label :name, "Name"
+    %br/
+    = f.text_field :name
+  %p
+    = f.label :description, "Description"
+    %br/
+    = f.text_field :description
+  = f.submit "Create Project"
