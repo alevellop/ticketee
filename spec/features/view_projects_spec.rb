@@ -1,5 +1,4 @@
-require 'capybara/rspec'
-require "rails_helper"
+require "spec_helper"
 
 feature "Viewing projects" do
   
