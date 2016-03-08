@@ -1,4 +1,3 @@
-require 'capybara/rspec'
 require "spec_helper"
 
 feature 'Creating Projects' do
