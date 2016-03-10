@@ -31,5 +31,3 @@ feature "Editing tickets" do
     expect(page).to have_content("Ticket has not been updated.")
   end
 end
-
-##---continuar por página 164
