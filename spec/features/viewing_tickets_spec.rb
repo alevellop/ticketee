@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 feature "Viewing tickets" do
     
@@ -17,14 +17,14 @@ feature "Viewing tickets" do
     scenario "Viewing tickets for a given project" do
         click_link "TextMate 2"
         
-        expect(page).to have_content("Make it shiny!")
-        expect(page).to_not have_content("Standards compliance")
+        expect(page).to have_content "Make it shiny!"
+        expect(page).to_not have_content "Standards compliance"
         
         click_link "Make it shiny!"
         within("#ticket h2") do
-            expect(page).to have_content("Make it shiny!")
+            expect(page).to have_content "Make it shiny!"
         end
         
-        expect(page).to have_content("Gradients! Starbursts! Oh my!")
+        expect(page).to have_content "Gradients! Starbursts! Oh my!"
     end
 end

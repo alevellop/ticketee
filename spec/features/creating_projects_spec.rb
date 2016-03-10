@@ -14,13 +14,13 @@ feature 'Creating Projects' do
     fill_in "Description", with: 'A text-editor for OS X'
     click_button 'Create Project'
     
-    expect(page).to have_content('Project has been created.')
+    expect(page).to have_content 'Project has been created.'
     
     project = Project.where(name: "TextMate 2").first
     expect(page.current_url).to eql(project_url(project))
     
     title= "TextMate 2 - Projects - Ticketee"
-    expect(page).to have_title(title)
+    expect(page).to have_title title
   end
   
   scenario "can not create project without name" do
@@ -28,7 +28,7 @@ feature 'Creating Projects' do
     # 'before' is executed here
     click_button 'Create Project'
     
-    expect(page).to have_content("Project has not been created.")
-    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content "Project has not been created."
+    expect(page).to have_content "Name can't be blank"
   end
 end
