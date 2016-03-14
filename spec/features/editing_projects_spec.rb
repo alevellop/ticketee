@@ -25,5 +25,3 @@ feature "Editing Projects" do
     expect(page).to have_content "Project has not been updated."
   end
 end
-
-##-----continuar por pagina 127
