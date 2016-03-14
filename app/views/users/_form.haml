@@ -1,0 +1,23 @@
+= form_for @user do |f|
+
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        Project has not been created.:
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  %p
+    = f.label :name, "Username"
+    = f.text_field :name
+  %p
+    = f.label :email
+    = f.text_field :email
+  %p
+    = f.label :password
+    = f.password_field :password
+  %p
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  = f.submit "Sign up"
