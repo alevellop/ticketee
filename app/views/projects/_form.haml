@@ -8,11 +8,11 @@
         - @project.errors.full_messages.each do |msg|
           %li= msg
   %p
-    = f.label :name , "Name"
+    = f.label :name
     %br/
     = f.text_field :name
   %p
-    = f.label :description, "Description"
+    = f.label :description
     %br/
     = f.text_field :description
   = f.submit

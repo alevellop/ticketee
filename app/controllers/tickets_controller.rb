@@ -1,16 +1,15 @@
 class TicketsController < ApplicationController
   
-  before_action :require_signin, except: [:show, :index]
   before_action :set_project
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :require_signin!, except: [:show, :index]
   
   def new
     @ticket = @project.tickets.build
   end
   
   def create
-    @ticket = @project.tickets.build(ticket_params)
-    @ticket.user = current_user
+    @ticket = @project.tickets.build(ticket_params.merge!(user: User.find(session[:user_id])))
     
     if @ticket.save
       redirect_to [@project, @ticket], notice: "Ticket has been created."
