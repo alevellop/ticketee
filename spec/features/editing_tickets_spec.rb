@@ -1,11 +1,13 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "Editing tickets" do
     
   let!(:project) {FactoryGirl.create(:project)}
-  let!(:ticket) {FactoryGirl.create(:ticket, project: project)}
+  let!(:user) {FactoryGirl.create(:user)}
+  let!(:ticket) {FactoryGirl.create(:ticket, project: project, user: user)}
   
   before do
+    sign_in_as!(user)
     visit '/'
     click_link project.name
     click_link ticket.title
@@ -17,6 +19,10 @@ feature "Editing tickets" do
     click_button "Update Ticket"
     
     expect(page).to have_content "Ticket has been updated."
+    
+    within("span #autor") do
+      expect(page).to have_content user.email
+    end
 
     within("#ticket h2") do
       expect(page).to have_content("Make it really shiny!")

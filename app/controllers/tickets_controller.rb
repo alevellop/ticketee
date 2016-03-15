@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
-    
+  
+  before_action :require_signin, except: [:show, :index]
   before_action :set_project
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
   
@@ -9,12 +10,13 @@ class TicketsController < ApplicationController
   
   def create
     @ticket = @project.tickets.build(ticket_params)
+    @ticket.user = current_user
     
     if @ticket.save
       redirect_to [@project, @ticket], notice: "Ticket has been created."
     else
       flash[:alert] = "Ticket has not been created."
-      render "new"
+      render :new
     end
   end
   
@@ -23,12 +25,11 @@ class TicketsController < ApplicationController
   end
   
   def update
-    
     if @ticket.update(ticket_params)
       redirect_to [@project, @ticket], notice: "Ticket has been updated."
     else
       flash[:alert] = "Ticket has not been updated."
-      render action: "edit"
+      render action: :edit
     end
   end
   

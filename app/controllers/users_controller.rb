@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       redirect_to @user, notice: "Profile has been updated."
     else
       flash[:alert] = "Profile has not been updated."
-      render 'edit'
+      render :edit
     end
   end
   
