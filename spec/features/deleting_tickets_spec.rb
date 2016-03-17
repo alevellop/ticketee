@@ -3,11 +3,7 @@ require 'spec_helper'
 feature 'Deleting tickets' do
 	let!(:project) { FactoryGirl.create(:project) }
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:ticket) do
-    ticket = FactoryGirl.create(:ticket, project: project)
-    ticket.update(user: user)
-    ticket
-  end
+  let!(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
 
   before do
     sign_in_as!(user)

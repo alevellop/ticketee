@@ -7,7 +7,7 @@ feature "Editing tickets" do
   let!(:ticket) {FactoryGirl.create(:ticket, project: project, user: user)}
   
   before do
-    sign_in_as!(user)
+    sign_in_as! user
     visit '/'
     click_link project.name
     click_link ticket.title
@@ -25,7 +25,7 @@ feature "Editing tickets" do
     end
 
     within("#ticket h2") do
-      expect(page).to have_content("Make it really shiny!")
+      expect(page).to have_content "Make it really shiny!"
     end
 
     expect(page).to_not have_content ticket.title
@@ -34,6 +34,6 @@ feature "Editing tickets" do
   scenario "Updating a ticket with invalid information" do
     fill_in "Title", with: ""
     click_button "Update Ticket"
-    expect(page).to have_content("Ticket has not been updated.")
+    expect(page).to have_content "Ticket has not been updated."
   end
 end

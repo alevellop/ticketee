@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "Profile has been updated."
+      redirect_to projects_path, notice: "Profile has been updated."
     else
       flash[:alert] = "Profile has not been updated."
       render :edit
@@ -32,14 +32,14 @@ class UsersController < ApplicationController
   end
   
   private
-  
+    
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+    
     def set_user
       @user = User.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-      redirect_to users_path, alert: "The user you were looking for could not be found."
-    end
-  
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      redirect_to projects_path, alert: "The user you were looking for could not be found."
     end
 end

@@ -3,6 +3,7 @@ require 'spec_helper'
 feature "Editing Projects" do
   
   before do
+    sign_in_as! FactoryGirl.create(:admin_user)
     FactoryGirl.create(:project, name: "TextMate 2")
     
     visit "/"
@@ -19,7 +20,7 @@ feature "Editing Projects" do
   end
   
   scenario "Updating a project with invalid attributes is bad" do
-    fill_in "Name", with: " "
+    fill_in "Name", with: ""
     click_button "Update Project"
     
     expect(page).to have_content "Project has not been updated."

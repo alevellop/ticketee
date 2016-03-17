@@ -9,7 +9,8 @@ class TicketsController < ApplicationController
   end
   
   def create
-    @ticket = @project.tickets.build(ticket_params.merge!(user: User.find(session[:user_id])))
+    @ticket = @project.tickets.build(ticket_params)
+    @ticket.user = current_user
     
     if @ticket.save
       redirect_to [@project, @ticket], notice: "Ticket has been created."
@@ -20,7 +21,6 @@ class TicketsController < ApplicationController
   end
   
   def edit
-    
   end
   
   def update
@@ -33,7 +33,6 @@ class TicketsController < ApplicationController
   end
   
   def destroy
-    
     @ticket.destroy
     redirect_to @project, notice: "Ticket has been deleted."
   end
